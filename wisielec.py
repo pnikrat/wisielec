@@ -78,14 +78,13 @@ class Hangman:
 
 def import_words():
     data = urllib2.urlopen('https://drive.google.com/uc?export=download&id=0Bzu_3HpHPr59NEFyYndMdDBtZjQ')
-    #file = open('https://www.dropbox.com/s/eseq374t1a5fxt4/words.txt?dl=0', 'r')
     for line in data:
         WORDS.append(line.rstrip())
-    print WORDS
 
 
 @app.route('/')
 def index():
+    import_words()
     flash('Have fun!')
     return render_template('layout.html')
 
@@ -125,5 +124,4 @@ def user_guess():
 
 
 if __name__ == '__main__':
-    import_words()
     app.run()

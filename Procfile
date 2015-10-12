@@ -1,1 +1,1 @@
-web: gunicorn wisielec:app --log-file=-
+web: gunicorn wisielec:app --log-file -
