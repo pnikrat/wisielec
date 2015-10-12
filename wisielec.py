@@ -3,6 +3,7 @@ import random
 import string
 import sys
 import logging
+import urllib2
 from flask import Flask, render_template, url_for, flash, redirect, request
 
 DEBUG = False  # configuration
@@ -76,10 +77,11 @@ class Hangman:
 
 
 def import_words():
-    file = open('app/words.txt', 'r')
-    for line in file:
+    data = urllib2.urlopen('https://drive.google.com/uc?export=download&id=0Bzu_3HpHPr59NEFyYndMdDBtZjQ')
+    #file = open('https://www.dropbox.com/s/eseq374t1a5fxt4/words.txt?dl=0', 'r')
+    for line in data:
         WORDS.append(line.rstrip())
-    file.close()
+    print WORDS
 
 
 @app.route('/')
