@@ -1,22 +1,30 @@
 <!doctype html>
 <html>
 <head>
-    <title>Wisielec</title>
+    <title>HANGMAN</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename = 'style.css') }}">
 </head>
 <body>
     <div class="page">
         <div class="game_title">
-            <h1>WISIELEC</h1>
+            <h1>HANGMAN</h1>
         </div>
         <div class="new_game">
             <form action="{{ url_for('new_game') }}" method="post" id="new_game_form">
             </form>
-            <button type="submit" form="new_game_form" value="new_game">Nowa gra</button>
+            <button type="submit" form="new_game_form" value="new_game">New game</button>
         </div>
-        {% for message in get_flashed_messages() %}
-            <div class="flash">{{ message }}</div>
-        {% endfor %}
+        <div class="flash">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul class=flashes>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+        </div>
 
         {% block body %} {% endblock %}
 
