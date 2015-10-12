@@ -76,7 +76,7 @@ class Hangman:
 
 
 def import_words():
-    file = open('tmp/words.txt', 'r')
+    file = open('app/words.txt', 'r')
     for line in file:
         WORDS.append(line.rstrip())
     file.close()
