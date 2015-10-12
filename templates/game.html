@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="letters">
+        <h3>Aktualnie zużyte litery: {{ gra.get_used_letters() }}</h3>
+        <h3>Dostępne litery: {{ gra.get_available_letters() }}</h3>
+    </div>
+    <div class='word'>
+        <h1>{{ gra.display_word() }}</h1>
+    </div>
+    <div class="guess_field">
+        <form action="{{ url_for('user_guess') }}" method="post">
+            Wpisz literę:
+            <input type="text" name="letter">
+            <input type="submit" value="Zgaduję">
+        </form>
+    </div>
+{% endblock %}
