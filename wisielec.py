@@ -1,13 +1,18 @@
 # -*- coding: utf-8 -*-
 import random
 import string
-from flask import Flask, render_template, url_for, flash, redirect, request, Markup
+import sys
+import logging
+from flask import Flask, render_template, url_for, flash, redirect, request
 
-DEBUG = True  # configuration
-SECRET_KEY = 'development key'
+DEBUG = False  # configuration
+SECRET_KEY = 'l55Vsm2ZJ5q1U518PlxfM5IE2T42oULB'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 WORDS = []
 game = None
@@ -71,7 +76,7 @@ class Hangman:
 
 
 def import_words():
-    file = open('words.txt', 'r')
+    file = open('tmp/words.txt', 'r')
     for line in file:
         WORDS.append(line.rstrip())
     file.close()
